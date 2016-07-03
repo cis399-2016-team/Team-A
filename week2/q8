@@ -1,0 +1,8 @@
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 *:ssh                   *:*                     LISTEN     
+tcp        0      0 ip-10-0-3-70.us-wes:ssh c-73-37-37-49.hsd:55962 ESTABLISHED
+tcp6       0      0 [::]:ssh                [::]:*                  LISTEN     
+udp        0      0 *:53440                 *:*                                
+udp        0      0 *:bootpc                *:*                                
+udp6       0      0 [::]:30307              [::]:*                             

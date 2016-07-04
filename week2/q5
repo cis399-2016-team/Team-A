@@ -1,3 +1,4 @@
+ubuntu@10-0-3-70:~$ ps aux | less
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root         1  0.0  0.5  33508  2852 ?        Ss   Jun27   0:01 /sbin/init
 root         2  0.0  0.0      0     0 ?        S    Jun27   0:00 [kthreadd]

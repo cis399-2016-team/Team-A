@@ -1,10 +1,5 @@
+ubuntu@ip-10-0-3-70:~$ free
              total       used       free     shared    buffers     cached
 Mem:        500244     316056     184188        340      17884     239452
 -/+ buffers/cache:      58720     441524
-Swap:            0          0          0
-
-ubuntu@ip-10-0-3-185:~$ free -m
-             total       used       free     shared    buffers     cached
-Mem:           488        355        133          0         46        245
--/+ buffers/cache:         62        425
 Swap:            0          0          0

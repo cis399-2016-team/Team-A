@@ -1,3 +1,4 @@
+ubuntu@10-0-3-70:~$ ifconfig
 eth0      Link encap:Ethernet  HWaddr 0a:50:c6:85:21:db  
           inet addr:10.0.3.70  Bcast:10.0.3.255  Mask:255.255.255.0
           inet6 addr: fe80::850:c6ff:fe85:21db/64 Scope:Link

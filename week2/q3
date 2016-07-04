@@ -1,4 +1,4 @@
-ubuntu@ip-10-0-3-70:
+ubuntu@ip-10-0-3-70:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 udev            240M   12K  240M   1% /dev
 tmpfs            49M  324K   49M   1% /run
@@ -7,14 +7,3 @@ none            4.0K     0  4.0K   0% /sys/fs/cgroup
 none            5.0M     0  5.0M   0% /run/lock
 none            245M     0  245M   0% /run/shm
 none            100M     0  100M   0% /run/user
-
-ubuntu@ip-10-0-3-185:~$ df -h
-Filesystem      Size  Used Avail Use% Mounted on
-udev            240M   12K  240M   1% /dev
-tmpfs            49M  332K   49M   1% /run
-/dev/xvda1      7.8G  921M  6.5G  13% /
-none            4.0K     0  4.0K   0% /sys/fs/cgroup
-none            5.0M     0  5.0M   0% /run/lock
-none            245M     0  245M   0% /run/shm
-none            100M     0  100M   0% /run/user
-

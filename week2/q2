@@ -1,3 +1,9 @@
 	The public IP can be located in the EC2 console under
 the Instances tab by selecting the Instance and locating
 Public IP under the Description Tab at the bottom of the page.
+
+Get the public DNS name of the instance (-- from https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console)
+You can get the public DNS for your instance using the Amazon EC2 console 
+(check the Public DNS column; if this column is hidden, click the Show/Hide
+icon and select Public DNS). If you prefer, you can use the describe-instances
+(AWS CLI) or Get-EC2Instance (AWS Tools for Windows PowerShell) command.

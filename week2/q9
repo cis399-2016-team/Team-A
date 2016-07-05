@@ -1,3 +1,6 @@
+// also can achieve through commands "dpkg --get-selections | grep -v deinstall" and "apt --installed list"
+
+ubuntu@ip-10-0-3-70:~$ dpkg -l
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)

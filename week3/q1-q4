@@ -34,6 +34,9 @@ Notice: /Stage[main]/Sshd/Service[ssh]/ensure: ensure changed 'stopped' to 'runn
 Info: /Stage[main]/Sshd/Service[ssh]: Unscheduling refresh on Service[ssh]
 Notice: Finished catalog run in 0.12 seconds
 
+ubuntu@ip-10-0-3-42:~$ sudo service ssh status
+ssh start/running, process 12674
+
 3.
 ubuntu@ip-10-0-3-42:/etc/ssh$ sudo puppet agent -t
 Info: Retrieving plugin
@@ -53,3 +56,7 @@ Info: Applying configuration version '1468305985'
 Notice: /Stage[main]/Sshd/Ssh_authorized_key[micah-key-pair]/ensure: created
 Notice: /Stage[main]/Sshd/Ssh_authorized_key[zhibin-key-pair]/ensure: created
 Notice: Finished catalog run in 0.09 seconds
+
+ubuntu@ip-10-0-3-42:~$ ls .ssh/
+authorized_keys  authorized_keys_backup
+

@@ -1,0 +1,55 @@
+1.
+ubuntu@ip-10-0-3-42:/etc/ssh$ sudo apt remove openssh-server
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages will be REMOVED:
+  openssh-server
+0 upgraded, 0 newly installed, 1 to remove and 4 not upgraded.
+After this operation, 955 kB disk space will be freed.
+Do you want to continue? [Y/n] y
+ocessing triggers for man-db (2.6.7.1-1ubuntu1) ...#########################] Pr
+
+ubuntu@ip-10-0-3-42:/etc/ssh$ sudo puppet agent -t
+Info: Retrieving plugin
+Info: Caching catalog for ip-10-0-3-42.us-west-2.compute.internal
+Info: Applying configuration version '1468305232'
+Notice: /Stage[main]/Sshd/Package[openssh-server]/ensure: created
+Notice: Finished catalog run in 1.45 seconds
+
+ubuntu@ip-10-0-3-42:/etc/ssh$ sudo service ssh status
+ssh start/running, process 11830
+
+2.
+ubuntu@ip-10-0-3-42:/etc/ssh$ sudo service ssh stop
+ssh stop/waiting
+ubuntu@ip-10-0-3-42:/etc/ssh$ sudo service ssh status
+ssh stop/waiting
+
+ubuntu@ip-10-0-3-42:/etc/ssh$ sudo puppet agent -t
+Info: Retrieving plugin
+Info: Caching catalog for ip-10-0-3-42.us-west-2.compute.internal
+Info: Applying configuration version '1468305232'
+Notice: /Stage[main]/Sshd/Service[ssh]/ensure: ensure changed 'stopped' to 'running'
+Info: /Stage[main]/Sshd/Service[ssh]: Unscheduling refresh on Service[ssh]
+Notice: Finished catalog run in 0.12 seconds
+
+3.
+ubuntu@ip-10-0-3-42:/etc/ssh$ sudo puppet agent -t
+Info: Retrieving plugin
+Info: Caching catalog for ip-10-0-3-42.us-west-2.compute.internal
+Info: Applying configuration version '1468305232'
+Notice: /Stage[main]/Sshd/File[/etc/ssh/sshd_config]/ensure: defined content as '{md5}1815e8d740ce2eaa0c6ea9fe6a1b5d41'
+Notice: Finished catalog run in 0.18 seconds
+
+4.
+ubuntu@ip-10-0-3-42:~$ ls .ssh/
+authorized_keys_backup								// original "authorized_keys" has been deleted
+
+ubuntu@ip-10-0-3-42:~$ sudo puppet agent -t
+Info: Retrieving plugin
+Info: Caching catalog for ip-10-0-3-42.us-west-2.compute.internal
+Info: Applying configuration version '1468305985'
+Notice: /Stage[main]/Sshd/Ssh_authorized_key[micah-key-pair]/ensure: created
+Notice: /Stage[main]/Sshd/Ssh_authorized_key[zhibin-key-pair]/ensure: created
+Notice: Finished catalog run in 0.09 seconds

@@ -1,0 +1,67 @@
+1.
+Instance Name		ID			public DNS
+   Team-A1		i-3d4cc9e0		http://ec2-52-42-8-121.us-west-2.compute.amazonaws.com/foo.html
+   Team-A2		i-976bfa4a		http://ec2-52-36-169-138.us-west-2.compute.amazonaws.com/foo.html
+
+2.
+Tried from both my Mac and Windows (at http://ec2-52-36-169-138.us-west-2.compute.amazonaws.com/foo.html):
+
+73.11.16.10 - - [18/Jul/2016:20:51:17 +0000] "GET /foo.html HTTP/1.1" 200 435 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9"
+
+73.11.16.10 - - [18/Jul/2016:20:51:08 +0000] "GET /foo.html HTTP/1.1" 200 435 "-" "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36"
+
+3.
+Comment: I didn't replace the default index.html under /var/www/html, and so I need to visit foo.html 
+		 by adding /foo.html to load-balancer address. Since the assignment doesn't specify/require me
+		 to do any alias, I decided to leave it the way it currently is. Btw, I can manipulate config 
+		 files to achieve it.
+
+Address: http://teamabalancer-280161813.us-west-2.elb.amazonaws.com/foo.html
+
+4.
+Shut down one: load balancer is still working (i.e. foo.html is present)
+Shut down both: load balancer is not responsive (i.e. blank page)
+Restore both: load balancer is working
+
+5.  -- accesses from Windows and Mac with regular health check
+
+Team-A1 (http://ec2-52-42-8-121.us-west-2.compute.amazonaws.com/foo.html)
+
+10.0.3.72 - - [18/Jul/2016:20:56:38 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+73.11.16.10 - - [18/Jul/2016:20:56:55 +0000] "GET /foo.html HTTP/1.1" 200 435 "-" "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36"
+73.11.16.10 - - [18/Jul/2016:20:56:55 +0000] "GET /favicon.ico HTTP/1.1" 404 536 "-" "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36"
+73.11.16.10 - - [18/Jul/2016:20:57:05 +0000] "GET /foo.html HTTP/1.1" 200 435 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9"
+10.0.3.229 - - [18/Jul/2016:20:57:08 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+10.0.3.72 - - [18/Jul/2016:20:57:08 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+
+
+Team-A2 (http://ec2-52-36-169-138.us-west-2.compute.amazonaws.com/foo.html)
+
+10.0.3.229 - - [18/Jul/2016:20:50:45 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+73.11.16.10 - - [18/Jul/2016:20:51:08 +0000] "GET /foo.html HTTP/1.1" 200 435 "-" "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36"
+10.0.3.72 - - [18/Jul/2016:20:51:15 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+10.0.3.229 - - [18/Jul/2016:20:51:15 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+73.11.16.10 - - [18/Jul/2016:20:51:17 +0000] "GET /foo.html HTTP/1.1" 200 435 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9"
+10.0.3.72 - - [18/Jul/2016:20:51:45 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+10.0.3.229 - - [18/Jul/2016:20:51:45 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+10.0.3.72 - - [18/Jul/2016:20:52:15 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+10.0.3.229 - - [18/Jul/2016:20:52:15 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+10.0.3.72 - - [18/Jul/2016:20:52:45 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+10.0.3.229 - - [18/Jul/2016:20:52:45 +0000] "GET / HTTP/1.1" 200 11820 "-" "ELB-HealthChecker/1.0"
+
+6.
+	file { "/var/www/html":
+		ensure => directory,
+		recurse => true,
+		owner => root,
+		group => root,
+	}
+
+	file { "/var/www/html/foo.html":
+		mode => 644,
+		owner => root,
+		group => root,
+		source => "puppet:///modules/apache/foo.html",
+		require => File["/var/www/html"],
+	}
+

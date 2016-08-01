@@ -1,0 +1,38 @@
+Here is the email I received from Amazon after running the command yes | awk '{ print "hello" }'
+and letting the console print hello for a little while.
+
+You are receiving this email because your Amazon CloudWatch Alarm "A1-High-CPU-Utilization" in the US West - Oregon region has entered the ALARM state, because "Threshold Crossed: 1 datapoint (74.138) was greater than the threshold (20.0)." at "Saturday 30 July, 2016 21:41:44 UTC".
+
+View this alarm in the AWS Management Console:
+https://console.aws.amazon.com/cloudwatch/home?region=us-west-2#s=Alarms&alarm=A1-High-CPU-Utilization
+
+Alarm Details:
+- Name:                       A1-High-CPU-Utilization
+- Description:                Created from EC2 Console
+- State Change:               OK -> ALARM
+- Reason for State Change:    Threshold Crossed: 1 datapoint (74.138) was greater than the threshold (20.0).
+- Timestamp:                  Saturday 30 July, 2016 21:41:44 UTC
+- AWS Account:                006170570170
+
+Threshold:
+- The alarm is in the ALARM state when the metric is GreaterThanThreshold 20.0 for 300 seconds.
+
+Monitored Metric:
+- MetricNamespace:            AWS/EC2
+- MetricName:                 CPUUtilization
+- Dimensions:                 [InstanceId = i-3d4cc9e0]
+- Period:                     300 seconds
+- Statistic:                  Average
+- Unit:                       not specified
+
+State Change Actions:
+- OK:
+- ALARM: [arn:aws:sns:us-west-2:006170570170:2016_Team_A]
+- INSUFFICIENT_DATA:
+
+
+--
+If you wish to stop receiving notifications from this topic, please click or visit the link below to unsubscribe:
+https://sns.us-west-2.amazonaws.com/unsubscribe.html?SubscriptionArn=arn:aws:sns:us-west-2:006170570170:2016_Team_A:5e162740-4782-4b2e-bd24-3427c0aa5e6d&Endpoint=mlevi@uoregon.edu
+
+Please do not reply directly to this email. If you have any questions or comments regarding this email, please contact us at https://aws.amazon.com/support

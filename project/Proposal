@@ -5,4 +5,5 @@
 3. As for security issues, we will concern about database file that stores user information. We will minimize the security risk by manipulating file permission, encryption of user information, and putting the database on server.
 
 4. Most of work will be deployment of the game and setting up sign-in and sign-up pages (with database involved) for users. From my initial research, I found that most browsers do not like java in terms of browser and system setting. Sometime java is disabled by default. We will write how to enable java in user manual. 
+
 5. Not applicable for now..

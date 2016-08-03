@@ -1,0 +1,28 @@
+1. For our project, we plan to use our Amazon Instance to create and host a web app which allows users to create, and log in to an account to play a game. The site will consist of three pages; Login, Account Setup and the Game Page. Although our goal is to allow users to connect to the Game Page, our focus will be less on the game itself and more on the login and data storage process. This means that our testing goals will revolve around ensuring that users can create and log in to their accounts to access their own instance of the game, and that their data remains consistent and safe.
+
+What follows is the list of Project Goals which will be manually tested to ensure the success of our project. 
+
+	Main Project Goals
+	-Account Creation correctly stores user data.
+	-Passwords are safely stored with secure hashing and salt.
+	-Login safely queries database and returns user session.
+	-Game is accessible only to users with a valid session.
+	
+	Stretch Goals
+	-Game properly functions within the user's browser
+	-Users are able to easily send bug reports
+		
+
+2. User population will be students who are currently enrolled in CIS 399 and some friends (and my parents becuase I want to somewhat show off to them :). Support issues will fall into the two categories of Game Issues and Account Management. The game may have several bugs, including not having a built-in reset function where users may only be able to reset through reloading the page. This, as well as any other bugs found in the game will be an inevitable part of the games "Alpha" release. The other side of support issues will be Account Management, which may be similar to our week 5 assignment, where we will have to deal with any issues that users have in creating or logging into their account.
+
+
+3. Since this is only a student project and we will be storing user information on a public facing server, we will heavily stress that users should NOT use any personal information or current passwords when creating an account for our site. Beyond this, we plan to store user information in mysql-server, which will be accessed through prepared statements in the sites PHP. Passwords (as well as any other information we deem sensitive) will be encrypted using SHA128, with a salt to prevent any Rainbow Table attacks. The goal is to keep our information as safe as possible, but with a stress on not storing anything useful anyway just in case.
+
+Further research is still needed on whether or not it is a good idea to use email accounts in the account creation and recovery process.
+
+
+4. Most of the work will be in deployment of the game, as well as setting up sign-in and sign-up pages (with database involved) for users. From my initial research, I found that most browsers do not like java in terms of browser and system setting. Sometimes java is disabled by default. We will write how to enable java in user manual. 
+
+For future maintainence, the project would always require troubleshooting for account access and creation. The site would also need to be monitored for attacks and stress to the instances.
+
+5. Documentation is likely to be published on its own page within the site. Otherwise it will be available on the GitHub wiki.
